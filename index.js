@@ -38,6 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // uso de router.js
+app.use("/", console.log('hola mundo'));
 app.use('/Users', UsersRouter);
 app.use('/Books', BooksRouter);
 app.use('/Dynamics', DynamicsRouter);
