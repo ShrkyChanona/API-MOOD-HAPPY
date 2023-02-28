@@ -1,9 +1,15 @@
 // definicion de librerias
 const express = require("express");
-const router = require("./router");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+
+//Routes
+const UsersRouter = require("./routes/users");
+const BooksRouter = require("./routes/books");
+const DynamicsRouter = require("./routes/dynamics");
+const CoursesRouter = require("./routes/courses");
+const CitesRouter = require("./routes/cites");
 
 // variables de entorno
 dotenv.config();
@@ -27,13 +33,17 @@ mongoose
   });
 // se usa con express, peticiones cruzadas.
 app.use(cors());
-
 //
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // uso de router.js
-app.use(router);
+app.use('/Users', UsersRouter);
+app.use('/Books', BooksRouter);
+app.use('/Dynamics', DynamicsRouter);
+app.use('/Courses', CoursesRouter);
+app.use('/Cites',CitesRouter);
+
 
 app.listen(PORT, async () => {
   console.log(`server up on port ${PORT}`);

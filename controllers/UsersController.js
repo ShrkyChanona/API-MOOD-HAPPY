@@ -1,12 +1,12 @@
-const Users = require("../model/register");
+const Users = require("../model/Users");
 
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
-    Users.find((err, table) => {
+    Users.find((err, collection) => {
         if (err) {
             res.send(err);
         }
-        res.json(table);
+        res.json(collection);
     });
 };
 
@@ -14,7 +14,7 @@ const getUsers = async (req, res) => {
 const createUser = async (req, res) => {
     const user = new Users({
         name: req.body.name,
-        lastname: req.body.lastnmae,
+        lastname: req.body.lastname,
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,

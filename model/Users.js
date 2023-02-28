@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Definicion del esquema a utilizar 
-const Mood_Happy = new mongoose.Schema({
+const UsersCollection = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -26,4 +26,4 @@ const Mood_Happy = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Users", Mood_Happy);
+module.exports = mongoose.model("Users", UsersCollection); 

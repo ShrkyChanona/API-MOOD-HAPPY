@@ -15,9 +15,9 @@ router.get("/", async (req, res) => {
 });
 
 // ruta get /todos
-router.get("/users", getTodos);
+router.get("/todos", getTodos);
 // ruta post todos
-router.post("/users", createTodo);
+router.post("/todos", createTodo);
 // ruta put todos
 router.put("/todos/:todoID", updateTodo);
 // ruta delete todos
