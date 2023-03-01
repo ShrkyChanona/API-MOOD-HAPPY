@@ -10,7 +10,7 @@ const getAddresss = async(req,res) => {
 };
 
 const addAddress = async (req, res) => {
-    const address = new Books({
+    const address = new Address({
         name_street: req.body.name_street,
         colony: req.body.colony,
         cp: req.body.cp,

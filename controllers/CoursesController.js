@@ -7,6 +7,21 @@ const getCourses = async (req, res) => {
         }
         res.json(collection);
     });
-}
+};
 
-module.exports = { getCourses };
+const addCourse = async (req, res) => {
+    const course = new Courses({
+        date_create: req.body.date_create,
+        date_asis: req.body.date_asis,
+        hour: req.body.hour
+    });
+
+    course.save(async (err, document) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json(document);
+    });
+};
+
+module.exports = { getCourses, addCourse };

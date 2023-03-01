@@ -10,7 +10,7 @@ const getPsycologists = async(req,res) => {
 };
 
 const registPsycologist = async (req, res) => {
-    const psycologist = new Books({
+    const psycologist = new Psycologist({
         name: req.body.name,
         lastname: req.body.lastname,
         email: req.body.email,
