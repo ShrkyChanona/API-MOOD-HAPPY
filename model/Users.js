@@ -24,6 +24,10 @@ const UsersCollection = new mongoose.Schema({
     type: String,
     requiered: true,
   },
+  membership:{
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model("Users", UsersCollection); 

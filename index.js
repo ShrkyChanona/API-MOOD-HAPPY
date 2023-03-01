@@ -10,6 +10,9 @@ const BooksRouter = require("./routes/books");
 const DynamicsRouter = require("./routes/dynamics");
 const CoursesRouter = require("./routes/courses");
 const CitesRouter = require("./routes/cites");
+const PsycologistRouter = require("./routes/psycologists");
+const AddressRouter = require("./routes/address");
+const AudioBooksRouter = require("./routes/audiobooks");
 
 // variables de entorno
 dotenv.config();
@@ -46,6 +49,9 @@ app.use('/Books', BooksRouter);
 app.use('/Dynamics', DynamicsRouter);
 app.use('/Courses', CoursesRouter);
 app.use('/Cites',CitesRouter);
+app.use('/Psycologists', PsycologistRouter );
+app.use('/Address', AddressRouter);
+app.use('/AudioBooks', AudioBooksRouter);
 
 
 app.listen(PORT, async () => {
