@@ -56,7 +56,7 @@ app.use('/Address', AddressRouter);
 app.use('/AudioBooks', AudioBooksRouter);
 
 https.createServer({
-  cert: fs.readFileSync('/etc/letsencrypt/archive/moodhappy.iothings.com.mx/chain1.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/archive/moodhappy.iothings.com.mx/fullchain1.pem'),
   key: fs.readFileSync('/etc/letsencrypt/archive/moodhappy.iothings.com.mx/privkey1.pem')
 }, app).listen(PORT, function () {
   console.log(`server up on port ${PORT}`);
