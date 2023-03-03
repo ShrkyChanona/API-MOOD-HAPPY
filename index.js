@@ -20,6 +20,8 @@ dotenv.config();
 // Puerto 
 const PORT = process.env.PORT || 8000;
 const app = express();
+const fs = require('fs');
+const https = require('https');
 
 // Libreria para mongodb - usa URL que debe existir en .env
 // usa la Base de datos llamada mongo y la coleccion llamada todos
@@ -53,7 +55,9 @@ app.use('/Psycologists', PsycologistRouter );
 app.use('/Address', AddressRouter);
 app.use('/AudioBooks', AudioBooksRouter);
 
-
-app.listen(PORT, async () => {
+https.createServer({
+  cert: fs.readFileSync('/etc/letsencrypt/live/moodhappy.iothings.com.mx/cert.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/moodhappy.iothings.com.mx/privkey.pem')
+}, app).listen(PORT, function () {
   console.log(`server up on port ${PORT}`);
 });
