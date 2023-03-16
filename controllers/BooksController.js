@@ -24,6 +24,12 @@ const registBook = async (req, res) => {
     });
 };
 
+const deleteBook = async (req, res) => {
+    Todo.deleteOne({ _id: req.params.bookID })
+      .then(() => res.json({ message: "book Deleted" }))
+      .catch((err) => res.send(err));
+  };
+
 module.exports = {
-    getBooks, registBook
+    getBooks, registBook,deleteBook
 }
