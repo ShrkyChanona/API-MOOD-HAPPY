@@ -13,7 +13,8 @@ const registBook = async (req, res) => {
     const book = new Books({
         name: req.body.name,
         author: req.body.author,
-        date_publication: req.body.date_publication
+        date_publication: req.body.date_publication,
+        image: req.body.image
     });
 
     book.save(async (err, document) => {
