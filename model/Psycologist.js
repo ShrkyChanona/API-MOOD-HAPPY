@@ -16,6 +16,9 @@ const PsycologistsCollection = new mongoose.Schema({
       cellphone: {
         type: String,
         requiered: true,
+      },
+      photo:{
+        type: String
       }
 });
 

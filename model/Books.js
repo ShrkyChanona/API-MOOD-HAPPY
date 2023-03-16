@@ -11,7 +11,10 @@ const BooksCollections = new mongoose.Schema({
     },
     date_publication:{
         type: String
-    }
+    },
+    image:{
+        type: String
+    },
 });
 
 module.exports = mongoose.model("Books", BooksCollections);
