@@ -6,7 +6,21 @@ const DynamicsCollection = new mongoose.Schema({
         type: String
     },
     description:{
-        type: String
+        des1:{
+            type: String
+        },
+        des2:{
+            type: String
+        },
+        des3:{
+            type: String
+        },
+        des4:{
+            type: String
+        },
+        des5:{
+            type: String
+        }
     },
     image:{
         type: String

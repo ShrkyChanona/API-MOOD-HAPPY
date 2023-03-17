@@ -12,7 +12,8 @@ const getDynamics = async (req, res) => {
 const createDynamic = async(req,res) =>{
     const dynamic = new Dynamics({
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        image: req.body.image,
     });
 
     dynamic.save(async (err, document) => {
@@ -23,6 +24,12 @@ const createDynamic = async(req,res) =>{
     });
 }
 
+const deleteDynamic = async (req, res) => {
+    Dynamics.deleteOne({ _id: req.params.dynamicID })
+      .then(() => res.json({ message: "Dynamic Deleted" }))
+      .catch((err) => res.send(err));
+  };
+
 module.exports = {
-    getDynamics, createDynamic
+    getDynamics, createDynamic, deleteDynamic
 };
