@@ -2,11 +2,17 @@ const Users = require("../model/Users");
 
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
-    Users.find((err, collection) => {
+    Users.find((err, userFind) => {
         if (err) {
             res.send(err);
         }
-        res.json(collection);
+
+        //elimina todo esto si en dado caso ya no funciona xd
+        if(req.body.name === userFind.name){
+            console.log("encontrado pibe tu eres" + userFind.lastname);
+        }
+        
+        //res.json(collection);
     });
 };
 

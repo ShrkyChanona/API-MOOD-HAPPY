@@ -14,7 +14,7 @@ const PsycologistRouter = require("./routes/psycologists");
 const AddressRouter = require("./routes/address");
 const AudioBooksRouter = require("./routes/audiobooks");
 
-// variables de entorno
+//variables de entorno
 dotenv.config();
 
 // Puerto 
@@ -37,21 +37,23 @@ mongoose
     console.log(err);
   });
 // se usa con express, peticiones cruzadas.
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 //
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // uso de router.js
-app.get('/',(req,res)=>{
-  res.json({message: "Hello world"});
+app.get('/', (req, res) => {
+  res.json({ message: "Hello world" });
 })
 app.use('/Users', UsersRouter);
 app.use('/Books', BooksRouter);
 app.use('/Dynamics', DynamicsRouter);
 app.use('/Courses', CoursesRouter);
-app.use('/Cites',CitesRouter);
-app.use('/Psycologists', PsycologistRouter );
+app.use('/Cites', CitesRouter);
+app.use('/Psycologists', PsycologistRouter);
 app.use('/Address', AddressRouter);
 app.use('/AudioBooks', AudioBooksRouter);
 
