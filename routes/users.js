@@ -9,7 +9,7 @@ const {
   const router = require("express").Router();
    
   // ruta get /users
-  router.get("/", getUsers);
+  router.get("/:name", getUsers);
   // ruta post users
   router.post("/", createUser);
   // ruta put users
