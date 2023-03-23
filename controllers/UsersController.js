@@ -3,7 +3,7 @@ const Users = require("../model/Users");
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
     const userFind = await Users.findOne( {
-        username: req.params.name,
+        username: req.params.username,
         password: req.params.password
     });
     
