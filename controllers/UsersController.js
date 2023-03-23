@@ -3,17 +3,30 @@ const Users = require("../model/Users");
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
     const userFind = await Users.findOne( {
-        username: req.params.name
+        username: req.params.name,
+        password: req.params.password
     });
-
+    
     if(!userFind){
         return res.send({
             message: "Usuario no encontrado"
         });
     }
 
-    console.log(userFind);
-
+    if(req.params.username === userFind.username){
+        if(req.params.password === userFind.password){
+            return res.send({
+                username: userFind.username,
+                name: userFind.name,
+                lastname: userFind.lastname,
+                email: userFind.email,
+                membership: userFind.membership
+            });
+        }
+        return res.send({
+            message: "Contraseña incorrecta por favor intentalo de nuevo"
+        });
+    }
 };
 
 // Crear un objeto con el formato indicado
