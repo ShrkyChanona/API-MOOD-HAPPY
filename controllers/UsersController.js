@@ -2,18 +2,18 @@ const Users = require("../model/Users");
 
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
-    Users.find((err, userFind) => {
-        if (err) {
-            res.send(err);
-        }
-
-        //elimina todo esto si en dado caso ya no funciona xd
-        if(req.body.name === userFind.name){
-            console.log("encontrado pibe tu eres" + userFind.lastname);
-        }
-        
-        //res.json(collection);
+    const userFind = await Users.findOne( {
+        name: req.body.name
     });
+
+    if(!userFind){
+        return res.send({
+            message: "Usuario no encontrado"
+        });
+    }
+
+    console.log(userFind);
+
 };
 
 // Crear un objeto con el formato indicado
