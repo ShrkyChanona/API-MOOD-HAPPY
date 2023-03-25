@@ -29,14 +29,14 @@ const verifyToken = (req, res, next) => {
       error: "Error, el token expiro o es invalido"
     });
   }
-
-  res.json({
-    userValidated: req.user
-  });
 }
 
 // ruta get /users
-router.get("/:username/:password", getUsers, verifyToken);
+router.get("/:username/:password", getUsers, verifyToken, (req, res) => {
+  res.json({
+    userValidated: req.user
+  });
+});
 // ruta post users
 router.post("/", createUser);
 // ruta put users
