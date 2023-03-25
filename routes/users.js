@@ -10,7 +10,7 @@ const {
 
 const router = require("express").Router();
 
-//VALIDATE DE USER
+//VALIDATE USER
 const verifyToken = (req, res, next) => {
   const token = req.header("auth-token");
   if (!token) {

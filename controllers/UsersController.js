@@ -24,7 +24,7 @@ const getUsers = async (req, res) => {
                     name: userFind.name,
                     email: userFind.email,
                     membership: userFind.membership
-                }, process.env.TOKEN_SECRET   
+                }, process.env.TOKEN_SECRET, {expiresIn: '15m'}  
             );
             //envia en formato json el token generado con la cabezera auth-token
             return res.header("auth-token", token).json({
