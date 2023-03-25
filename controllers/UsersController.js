@@ -1,28 +1,42 @@
 const Users = require("../model/Users");
+const jwt = require("jsonwebtoken");
 
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
-    const userFind = await Users.findOne( {
+    const userFind = await Users.findOne({
         username: req.params.username,
         password: req.params.password
     });
-    
-    if(!userFind){
+
+    if (!userFind) {
         return res.send({
             message: "Usuario no encontrado"
         });
     }
 
-    if(req.params.username === userFind.username){
-        if(req.params.password === userFind.password){
-            return res.send({
-                username: userFind.username,
-                name: userFind.name,
-                lastname: userFind.lastname,
-                email: userFind.email,
-                membership: userFind.membership
+    if (req.params.username === userFind.username) {
+        if (req.params.password === userFind.password) {
+            //create token 
+            const token = jwt.sign(
+                //payload del token
+                {
+                    username: userFind.username,
+                    name: userFind.name,
+                    email: userFind.email,
+                    membership: userFind.membership
+                }, process.env.TOKEN_SECRET   
+            );
+            //envia en formato json el token generado con la cabezera auth-token
+            return res.header("auth-token", token).json({
+                data:{
+                    token,
+                },
             });
+            // return res.send({
+            //     token
+            // });
         }
+
         return res.send({
             message: "Contraseña incorrecta por favor intentalo de nuevo"
         });
