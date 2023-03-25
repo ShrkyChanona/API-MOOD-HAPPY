@@ -31,6 +31,7 @@ const getUsers = async (req, res) => {
                 data:{
                     token,
                 },
+                user: req.user,
             });
             // return res.send({
             //     token
