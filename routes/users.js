@@ -21,8 +21,6 @@ const verifyToken = (req, res, next) => {
 
   try{
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    console.log(verified);
-    console.log(verified.name);
     req.user = verified;
     next();
   }
@@ -31,6 +29,10 @@ const verifyToken = (req, res, next) => {
       error: "Error, el token expiro o es invalido"
     });
   }
+
+  res.json({
+    userValidated: req.user
+  });
 }
 
 // ruta get /users
