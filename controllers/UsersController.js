@@ -67,7 +67,7 @@ const createUser = async (req, res) => {
             const paramsMessage = {
                 Message: "Usted se ha afiliado exitosamente a Mood-Happy",
                 TopicArn: "arn:aws:sns:us-east-1:430454155116:Users-registers",
-                EndPoind: req.body.email,
+                EndPoint: req.body.email,
             }
             //Suscribcion del usuario al sns
             sns.subscribe(paramsMessage, (err, data) => {
