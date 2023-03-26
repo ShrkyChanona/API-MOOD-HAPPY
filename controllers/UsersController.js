@@ -34,9 +34,6 @@ const getUsers = async (req, res) => {
                     token,
                 },
             });
-            // return res.send({
-            //     token
-            // });
         }
 
         return res.send({
@@ -61,11 +58,15 @@ const createUser = async (req, res) => {
             res.send(err);
         }
         else {
-            const sns = new AWS.SNS();
+            const sns = new AWS.SNS({
+                accessKeyId: "AKIAWIOIRE5WOHA3PTOB",
+                secretAccessKey: "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",
+                region: 'us-east-1'
+            });
             //Definicion de los parametros del mensaje SNS
             const paramsMessage = {
                 Message: "Usted se ha afiliado exitosamente a Mood-Happy",
-                TopicArn: "arn:aws:sns:us-west-2:123456789012:mi-topico-sns",
+                TopicArn: "arn:aws:sns:us-east-1:430454155116:Users-registers",
                 EndPoind: req.body.email,
             }
             //Suscribcion del usuario al sns
