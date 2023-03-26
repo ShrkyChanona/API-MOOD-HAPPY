@@ -1,5 +1,7 @@
 const Users = require("../model/Users");
 const jwt = require("jsonwebtoken");
+//Importamos la SDK de AWS y creamos un objeto de SNS
+const AWS = require("aws-sdk");
 
 // Obtener todos los objetos
 const getUsers = async (req, res) => {
@@ -24,11 +26,11 @@ const getUsers = async (req, res) => {
                     name: userFind.name,
                     email: userFind.email,
                     membership: userFind.membership
-                }, process.env.TOKEN_SECRET, {expiresIn: '15m'}  
+                }, process.env.TOKEN_SECRET, { expiresIn: '15m' }
             );
             //envia en formato json el token generado con la cabezera auth-token
             return res.header("auth-token", token).json({
-                data:{
+                data: {
                     token,
                 },
             });
@@ -58,7 +60,25 @@ const createUser = async (req, res) => {
         if (err) {
             res.send(err);
         }
-        res.json(document);
+        else {
+            const sns = AWS.SNS();
+            //Definicion de los parametros del mensaje SNS
+            const paramsMessage = {
+                Message: "Usted se ha afiliado exitosamente a Mood-Happy",
+                TopicArn: "arn:aws:sns:us-west-2:123456789012:mi-topico-sns",
+                EndPoind: req.body.email,
+            }
+            sns.publish(paramsMessage, (err, data) => {
+                if(err){
+                    console.log(err);
+                } 
+                else{
+                    console.log(data);
+                    res.send(data);
+                }
+            })
+            res.json(document);
+        }
     });
 };
 
