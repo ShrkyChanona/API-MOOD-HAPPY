@@ -76,7 +76,6 @@ const createUser = async (req, res) => {
                 }
                 else {
                     console.log("Usuario suscrito a SNS correctamente", data);
-                    res.send(data);
                 }
             })
 
