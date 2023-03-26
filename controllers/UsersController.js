@@ -88,7 +88,7 @@ const createUser = async (req, res) => {
                 TopicArn: 'arn:aws:sns:us-west-2:123456789012:mi-topico-sns'
             }
 
-            sns.publish(params, (req, res) => {
+            sns.publish(params, (err,data) => {
                 if (err) console.log(err, err.stack);
                 else console.log(data);
 
