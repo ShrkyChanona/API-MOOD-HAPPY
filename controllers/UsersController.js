@@ -61,7 +61,7 @@ const createUser = async (req, res) => {
             res.send(err);
         }
         else {
-            const sns = AWS.SNS();
+            const sns = new AWS.SNS();
             //Definicion de los parametros del mensaje SNS
             const paramsMessage = {
                 Message: "Usted se ha afiliado exitosamente a Mood-Happy",
