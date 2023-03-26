@@ -85,7 +85,7 @@ const createUser = async (req, res) => {
             let params = {
                 Message: `${req.email} \n\n Enviado: ${today}`,
                 Subject: req.body.Subject,
-                TopicArn: 'arn:aws:sns:us-west-2:123456789012:mi-topico-sns'
+                TopicArn: 'arn:aws:sns:us-east-1:430454155116:Users-registers'
             }
 
             sns.publish(params, (err,data) => {
