@@ -21,8 +21,8 @@ const verifyToken = (req, res, next) => {
 
   try{
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    console.log("hola si entre y se supone que ya valide");
-    console.log(verified.name);
+    //verified contiene los datos del usuario de forma cruda
+    //almacenamos en una variable llamada user el objeto que contiene los valores del usuario
     req.user = verified
     next();
   }
