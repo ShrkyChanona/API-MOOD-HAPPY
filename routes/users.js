@@ -21,8 +21,10 @@ const verifyToken = (req, res, next) => {
 
   try{
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+    console.log("hola si entre y se supone que ya valide");
+    console.log(verified.name);
     res.send({
-      verified
+      userValidate: verified
     })
     next();
   }
