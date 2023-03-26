@@ -68,15 +68,30 @@ const createUser = async (req, res) => {
                 TopicArn: "arn:aws:sns:us-west-2:123456789012:mi-topico-sns",
                 EndPoind: req.body.email,
             }
-            sns.publish(paramsMessage, (err, data) => {
-                if(err){
-                    console.log(err);
-                } 
-                else{
-                    console.log(data);
+            //Suscribcion del usuario al sns
+            sns.subscribe(paramsMessage, (err, data) => {
+                if (err) {
+                    console.log("Error al suscribirse a SNS", err);
+                }
+                else {
+                    console.log("Usuario suscrito a SNS correctamente", data);
                     res.send(data);
                 }
             })
+
+            //Envio de mensaje SNS via email
+            let today = new Date().toString();
+            let params = {
+                Message: `${req.email} \n\n Enviado: ${today}`,
+                Subject: req.body.Subject,
+                TopicArn: 'arn:aws:sns:us-west-2:123456789012:mi-topico-sns'
+            }
+
+            sns.publish(params, (req, res) => {
+                if (err) console.log(err, err.stack);
+                else console.log(data);
+
+            });
             res.json(document);
         }
     });
