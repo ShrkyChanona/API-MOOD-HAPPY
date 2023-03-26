@@ -67,7 +67,7 @@ const createUser = async (req, res) => {
             const paramsMessage = {
                 Protocol: 'EMAIL', 
                 TopicArn: "arn:aws:sns:us-east-1:430454155116:Users-registers",
-                EndPoint: req.body.email,
+                Endpoint: req.body.email,
             }
             //Suscribcion del usuario al sns
             sns.subscribe(paramsMessage, (err, data) => {
