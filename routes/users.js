@@ -23,9 +23,7 @@ const verifyToken = (req, res, next) => {
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
     console.log("hola si entre y se supone que ya valide");
     console.log(verified.name);
-    res.send({
-      userValidate: verified
-    })
+    req.user = verified
     next();
   }
   catch(err){
@@ -36,7 +34,15 @@ const verifyToken = (req, res, next) => {
 }
 
 // ruta get /users
-router.get("/:username/:password", getUsers, verifyToken);
+router.get("/:username/:password", getUsers);
+router.get("/validate", verifyToken ,(req, res) => {
+  res.json({
+    error: null,
+    data: {
+      user: req.user, // token payload information
+    },
+  });
+})
 // ruta post users
 router.post("/", createUser);
 // ruta put users
