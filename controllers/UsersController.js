@@ -65,7 +65,7 @@ const createUser = async (req, res) => {
             });
             //Definicion de los parametros del mensaje SNS
             const paramsMessage = {
-                Message: "Usted se ha afiliado exitosamente a Mood-Happy",
+                Protocol: 'EMAIL', 
                 TopicArn: "arn:aws:sns:us-east-1:430454155116:Users-registers",
                 EndPoint: req.body.email,
             }
