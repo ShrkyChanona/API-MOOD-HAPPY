@@ -32,11 +32,7 @@ const verifyToken = (req, res, next) => {
 }
 
 // ruta get /users
-router.get("/:username/:password", getUsers, verifyToken, (req, res) => {
-  res.json({
-    userValidated: req.user
-  });
-});
+router.get("/:username/:password", getUsers, verifyToken);
 // ruta post users
 router.post("/", createUser);
 // ruta put users
