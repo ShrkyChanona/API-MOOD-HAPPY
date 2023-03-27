@@ -1,4 +1,33 @@
 const jwt = require("jsonwebtoken");
+const limit = require("express-rate-limit");
+
+//definicion de objeto donde se almacenaran el numero de peticiones que se han realizado por direccion IP
+const requestCount = {}
+
+//definicion de middleware para limtar el numero de peticiones
+const ratelimit = (req, res, next) =>{
+  const clientIp = req.ip;
+  const limiter = limit({
+    windowMs: 900 * 1000,
+    max: 1,
+    message: "Demasiadas solicitudes"
+  });
+
+  console.log(limiter.max);
+  console.log(limiter.message);
+
+  //verificacion de cuantas peticiones lleva
+  if(requestCount[clientIp] && requestCount[clientIp] >= 1){
+    return res.status(429).json({
+      message: "se han realizado demasiadas solicitudes para el inicio de sesion \n intentelo mas tarde",
+    })
+  }
+
+  //en caso de no superar el numero de limitaciones incrementa el contador
+  //el objeto apuntado por la direccion clientIP pregunta si el objeto esta vacio, en caso de 
+  requestCount[clientIp] = (requestCount[clientIp] || 0) +1;
+  next();
+};
 
 // definicion de rutas
 const {
@@ -34,7 +63,7 @@ const verifyToken = (req, res, next) => {
 }
 
 // ruta get /users
-router.get("/:username/:password", getUsers);
+router.get("/:username/:password",ratelimit,getUsers);
 router.get("/validate", verifyToken ,(req, res) => {
   res.json({
     error: null,
