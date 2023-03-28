@@ -15,6 +15,7 @@ const registPsycologist = async (req, res) => {
         lastname: req.body.lastname,
         email: req.body.email,
         cellphone: req.body.cellphone,
+        photo: req.body.photo,
     });
 
     psycologist.save(async (err, document) => {

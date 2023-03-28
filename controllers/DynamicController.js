@@ -14,6 +14,7 @@ const createDynamic = async(req,res) =>{
         name: req.body.name,
         description: req.body.description,
         image: req.body.image,
+        imagesDes: req.body.imagesDes,
     });
 
     dynamic.save(async (err, document) => {

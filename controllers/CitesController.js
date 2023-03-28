@@ -12,6 +12,7 @@ const getCites = async (req, res) => {
 const createCite = async (req, res) => {
     const cite = new Cites({
         date_create: req.body.date_create,
+        patient: req.body.patient,
         date_asis: req.body.date_asis,
         hour: req.body.hour
     });

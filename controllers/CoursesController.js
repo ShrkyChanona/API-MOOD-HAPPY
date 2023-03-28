@@ -11,9 +11,9 @@ const getCourses = async (req, res) => {
 
 const addCourse = async (req, res) => {
     const course = new Courses({
-        date_create: req.body.date_create,
-        date_asis: req.body.date_asis,
-        hour: req.body.hour
+        name: req.body.name,
+        description: req.body.description,
+        tasks: req.body.tasks,
     });
 
     course.save(async (err, document) => {

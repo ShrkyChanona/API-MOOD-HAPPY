@@ -27,6 +27,23 @@ const DynamicsCollection = new mongoose.Schema({
     },
     image:{
         type: String
+    },
+    imagesDes:{
+        imageDes1:{
+            type: String
+        },
+        imageDes2:{
+            type: String
+        },
+        imageDes3:{
+            type: String
+        },
+        imageDes4:{
+            type: String
+        },
+        imageDes5:{
+            type: String
+        }
     }
 });
 
