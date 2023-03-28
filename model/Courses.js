@@ -6,7 +6,7 @@ const CoursesCollection = new mongoose.Schema({
         type: String,
     },
     number:{
-        type: int
+        type: Number,
     },
     description:{
         type: String
