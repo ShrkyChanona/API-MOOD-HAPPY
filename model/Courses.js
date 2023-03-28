@@ -5,6 +5,9 @@ const CoursesCollection = new mongoose.Schema({
     name:{
         type: String,
     },
+    number:{
+        typeof: int
+    },
     description:{
         type: String
     },
