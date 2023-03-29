@@ -12,6 +12,7 @@ const getCourses = async (req, res) => {
 const addCourse = async (req, res) => {
     const course = new Courses({
         name: req.body.name,
+        number: req.body.number,
         description: req.body.description,
         tasks: req.body.tasks,
     });
